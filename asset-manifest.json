@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/github.io/ReactWeather/static/css/main.0be0eb3f.css",
+    "main.js": "/github.io/ReactWeather/static/js/main.92eb17a8.js",
+    "static/js/453.643eb293.chunk.js": "/github.io/ReactWeather/static/js/453.643eb293.chunk.js",
+    "static/media/World Map.svg": "/github.io/ReactWeather/static/media/World Map.f103cfb3568f47ff2839.svg",
+    "index.html": "/github.io/ReactWeather/index.html",
+    "main.0be0eb3f.css.map": "/github.io/ReactWeather/static/css/main.0be0eb3f.css.map",
+    "main.92eb17a8.js.map": "/github.io/ReactWeather/static/js/main.92eb17a8.js.map",
+    "453.643eb293.chunk.js.map": "/github.io/ReactWeather/static/js/453.643eb293.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0be0eb3f.css",
+    "static/js/main.92eb17a8.js"
+  ]
+}
