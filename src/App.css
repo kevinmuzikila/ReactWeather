@@ -117,7 +117,34 @@ border: 1px solid rgba(255, 255, 255, 0.56);
   flex-direction: column;
   color: #eef2f7;
   padding-left: 10px;
-  
+
+}
+.fore-img
+{
+  width: 200px;
+  height: 200px;
+
+  border: 2px solid rgb(211, 211, 211);
+  margin-left: 40px;
+
+}
+.fore-text
+{
+ text-transform: capitalize;
+}
+.forecast-cont
+{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  border: 5px solid black;
+  justify-content: stretch ;
+  justify-content: center;
+  align-items: center;
+}
+.fore-card
+{
+  width: 18rem;
 }
 .detail-cont > p
 {

@@ -2,14 +2,19 @@ import './App.css';
 import CurrentWeather from './Components/CurrentWeather';
 import Search from './Components/Search';
 import Forecast from './Components/Forecast';
-import { WEATHER_URL, Api_key,Weather_onecall } from './Api';
-import { useState } from 'react';
+import { WEATHER_URL, Api_key, Weather_onecall } from './Api';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [foreData, setForeData] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const defaultLat = "-26.2048"; // Example: New York City latitude
+  const defaultLon = "28.0369"; // Example: New York City longitude
+  
+
 
   const handleOnSearchChange = (searchData) => {
     const [lat, lon] = searchData.value.split(',');
@@ -24,15 +29,13 @@ function App() {
       .then(async (response) => {
         const weatherResponse = await response[0].json();
         const forecastResponse = await response[1].json();
-      
 
         console.log('Weather Response:', weatherResponse);
         console.log('Forecast Response:', forecastResponse);
-  
 
         setWeatherData({ city: searchData.label, ...weatherResponse });
         setForeData({ city: searchData.label, ...forecastResponse });
-      
+
         setLoading(false);
       })
       .catch((err) => {
@@ -55,35 +58,33 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    handleOnSearchChange({ value: `${defaultLat},${defaultLon}`, label: 'Johannesburg, Gauteng' });
+  }, []);
+
   return (
     <div className="App">
-  
-    
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">SimWeather</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-      
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">SimWeather</a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link disabled" href="#">About</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link disabled" href="#">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
       <div className="search-cont">
         <Search onSearchChange={handleOnSearchChange} />
@@ -92,7 +93,7 @@ function App() {
       <div className="home-cont">
         {loading && <p className="loading">Loading...</p>}
         {error && <p className="error">{error}</p>}
-        {!loading && !error && weatherData && <CurrentWeather weatherData={weatherData} />}  
+        {!loading && !error && weatherData && <CurrentWeather weatherData={weatherData} />}
       </div>
       {!loading && !error && foreData && <Forecast forecastData={foreData} />}
     </div>
